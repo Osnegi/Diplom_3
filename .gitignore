@@ -5,4 +5,5 @@ lib/
 external libraries/
 venv/
 .idea
-
+/shelf/
+/workspace.xml
