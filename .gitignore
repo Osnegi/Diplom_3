@@ -1,1 +1,8 @@
 # Diplom_3
+pyvenv.cfg
+bin/
+lib/
+external libraries/
+venv/
+.idea
+
