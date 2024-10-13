@@ -1,13 +1,10 @@
 import pytest
 from selenium import webdriver
 import requests
-from api_helper import RandomUserData
+from helper import RandomUserData
 import urls
 from pages.login_page import LoginPage
-
 from pages.home_page import HomePage
-from locators.home_page_locators import HomePageLocators
-
 
 @pytest.fixture(scope = 'function', params = ['chrome','firefox'])
 def driver(request):
@@ -44,8 +41,8 @@ def login_user(driver, client):
 
     login_page = LoginPage(driver)
     home_page = HomePage(driver)
-
-    login_page.wait_element_disappearing(HomePageLocators.OVERLAY_SCROLL)
+    home_page.wait_disappear_overlay_scroll()
+    home_page.wait_disappear_overlay_modal()
     login_page.input_user_data(client['email'], client['password'])
-    login_page.wait_element_disappearing(HomePageLocators.OVERLAY_SCROLL)
     home_page.wait_load_home_page()
+

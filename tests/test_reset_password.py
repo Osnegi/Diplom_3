@@ -2,7 +2,6 @@ import urls
 from pages.forgot_password_page import ForgotPasswordPage
 from pages.reset_password_page import ResetPasswordPage
 from pages.login_page import LoginPage
-from locators.home_page_locators import HomePageLocators
 import allure
 
 class TestResetPassword:
@@ -14,7 +13,7 @@ class TestResetPassword:
         forgot_password_page = ForgotPasswordPage(driver)
 
         driver.get(urls.LOGIN_PAGE)
-        login_page.wait_element_disappearing(HomePageLocators.OVERLAY_SCROLL)
+        forgot_password_page.wait_disappear_overlay_scroll()
         login_page.click_restore_password()
         forgot_password_page.wait_load_forgot_password_page()
 
@@ -29,7 +28,8 @@ class TestResetPassword:
 
         driver.get(urls.FORGOT_PASSWORD_PAGE)
         forgot_password_page.fill_email_field(email_for_reset)
-        forgot_password_page.wait_element_disappearing(HomePageLocators.OVERLAY_SCROLL)
+        forgot_password_page.wait_disappear_overlay_scroll()
+
         forgot_password_page.click_restore_password_button()
         reset_password_page.wait_load_reset_password_page()
 
@@ -44,10 +44,12 @@ class TestResetPassword:
 
         driver.get(urls.FORGOT_PASSWORD_PAGE)
         forgot_password_page.fill_email_field(email_for_reset)
-        forgot_password_page.wait_element_disappearing(HomePageLocators.OVERLAY_SCROLL)
+        forgot_password_page.wait_disappear_overlay_scroll()
+
         forgot_password_page.click_restore_password_button()
 
         reset_password_page.wait_load_reset_password_page()
+        forgot_password_page.wait_disappear_overlay_scroll()
 
         reset_password_page.click_show_password()
 

@@ -1,6 +1,7 @@
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver import ActionChains
+from locators.home_page_locators import HomePageLocators
 import allure
 
 class BasePage:
@@ -10,7 +11,7 @@ class BasePage:
 
     @allure.step('Кликаем по элементу')
     def click_element(self, locator):
-        WebDriverWait(self.driver, 20).until(EC.element_to_be_clickable(locator))
+        WebDriverWait(self.driver, 50).until(EC.element_to_be_clickable(locator))
         self.driver.find_element(*locator).click()
 
     @allure.step('Заполняем поле данными')
@@ -52,3 +53,11 @@ class BasePage:
         drag = WebDriverWait(self.driver, 20).until(EC.element_to_be_clickable(source))
         drop = WebDriverWait(self.driver, 20).until(EC.element_to_be_clickable(target))
         action_chains.drag_and_drop(drag, drop).perform()
+
+    @allure.step('Ждем исчезновения оверлэй объекта - скролл')
+    def wait_disappear_overlay_scroll(self):
+        self.wait_element_disappearing(HomePageLocators.OVERLAY_SCROLL)
+
+    @allure.step('Ждем исчезновения оверлэй объекта - модальное окно')
+    def wait_disappear_overlay_modal(self):
+        self.wait_element_disappearing(HomePageLocators.OVERLAY_MODAL)

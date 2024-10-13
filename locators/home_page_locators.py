@@ -6,7 +6,8 @@ class HomePageLocators:
     FEED_BUTTON = (By.XPATH, ".//p[text()='Лента Заказов']")
 
     # лист ингридиентов
-    INGREDIENTS_LIST = (By.XPATH, ".//p[contains(text(), 'булка')]//parent::a[contains(@href, '/ingredient/')]")
+    BUN_INGREDIENTS_LIST = (By.XPATH, ".//p[contains(text(), 'булка')]//parent::a[contains(@href, '/ingredient/')]")
+    NON_BUN_INGREDIENTS_LIST = (By.XPATH, ".//p[not(contains(text(), 'булка'))]//parent::a[contains(@href, '/ingredient/')]")
     # первый ингридиент в картинках ингридиентов для бургера
     FIRST_INGREDIENT = (By.XPATH, "//a[contains(@class, 'BurgerIngredient_ingredient_')][1]")
     # заголовок всплывающего окна с инфо об ингридиенте
@@ -35,4 +36,4 @@ class HomePageLocators:
     CLOSE_MODAL_NEW_ORDER_BUTTON = (By.XPATH, ".//button[contains(@class,'Modal_modal__close_modified')]")
 
     OVERLAY_SCROLL = (By.XPATH, "//div[contains(@class, 'Modal_modal_overlay__x2ZCr')]/parent::div")
-    OVERLAY_SCROLL2 = (By.XPATH, "//div[contains(@class, 'Modal_modal_overlay__x2ZCr')]/parent::div[2]")
+    OVERLAY_MODAL = (By.XPATH, './/img[contains(@class, "Modal_modal__loading")]')

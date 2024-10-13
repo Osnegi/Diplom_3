@@ -19,7 +19,7 @@ class HomePage(BasePage):
     @allure.step('Ожидаем загрузки главной страницы')
     def wait_load_home_page(self):
         self.wait_for_url(urls.BASE_URL)
-        self.wait_and_find_element(HomePageLocators.INGREDIENTS_LIST)
+        self.wait_and_find_element(HomePageLocators.BUN_INGREDIENTS_LIST)
 
     @allure.step('Переходим по кнопке "Лента заказов" в ленту заказов')
     def click_feed_button(self):
@@ -45,9 +45,17 @@ class HomePage(BasePage):
         self.wait_and_find_element(HomePageLocators.CLOSE_MODAL_INGREDIENT_BUTTON)
         self.click_element(HomePageLocators.CLOSE_MODAL_INGREDIENT_BUTTON)
 
-    @allure.step('Выбираем ингридиент из списка')
-    def select_ingredient(self):
-        ingredients = self.driver.find_elements(*HomePageLocators.INGREDIENTS_LIST)
+    @allure.step('Выбираем ингридиент не булка из списка')
+    def select_non_bun_ingredient(self):
+        ingredients = self.driver.find_elements(*HomePageLocators.NON_BUN_INGREDIENTS_LIST)
+        print(f'Ingredients: {ingredients}')
+        selected_ingredient = choice(ingredients)
+        return selected_ingredient
+
+    @allure.step('Выбираем ингридиент булка из списка')
+    def select_bun_ingredient(self):
+        ingredients = self.driver.find_elements(*HomePageLocators.BUN_INGREDIENTS_LIST)
+        print(f'Ingredients: {ingredients}')
         selected_ingredient = choice(ingredients)
         return selected_ingredient
 
